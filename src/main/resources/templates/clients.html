@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="layout">
+<head>
+<meta charset="UTF-8"/>
+<title>Gestion des clients</title>
+</head>
+<body>
+	<p></p>
+<div class="container" layout:fragment="content" >	
+	<div class="container">
+	<form th:action="@{index}">
+		<label class="font-weight-bold"> Mot clé</label>
+		<input type="text"  name="motCle" th:value="${motCle}"/>
+		<button class="btn btn-info">chercher</button>
+	</form>
+	<p></p>
+	</div>
+	<div class="container">
+	<table class="table">
+		<thead>
+			<th>ID</th><th>Nom</th><th>Prenom</th><th>Adresse</th>
+		</thead>
+		<tbody>
+			<tr th:each="c:${listClients}">
+				<td th:text="${c.id}"></td>
+				<td th:text="${c.nom}"></td>
+				<td th:text="${c.prenom}"></td>
+				<td th:text="${c.adresse}"></td>
+				<td> <a  th:href="@{/admin/editer(id=${c.id})}"><i class="fas fa-pen"></i> Editer</a></td>
+				<td> <a class="text-danger" onclick= "return confirm ('Voulez-vous vraiment supprimer?')" th:href="@{/admin/supprimer(id=${c.id},page=${pageCourante},size=${size},motCle=${motCle})}"> <i class="fas fa-trash"></i> Supprimer</a></td>
+			</tr>
+		</tbody>
+	
+	</table>
+	<div class="container">
+		<ul class="nav nav-pills">
+			<li class= "nav-item"   th:each="p,status:${pages}" >
+				<a th:class="${pageCourante==status.index?'nav-link active':'nav-link'}"  th:href="@{/user/index(page=${status.index},size=${size},motCle=${motCle})}" th:text="${status.index}"></a>
+			</li>
+		</ul>
+		<!-- <ul class="nav nav-pills">
+			<li class= "nav-item "  >
+				<a class="nav-link active" href="#">20</a>
+			</li>
+			<li class= "nav-item "  >
+				<a class="nav-link"  href="#">20</a>
+			</li>
+		</ul>	 -->
+	</div>
+	</div>
+</div>	
+</body>
+</html>

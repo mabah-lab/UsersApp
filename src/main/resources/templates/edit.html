@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="layout">
+<head>
+<meta charset="UTF-8"/>
+<title>Modification d'un client</title>
+
+</head>
+<body>
+	<p></p>
+	<div class="container" layout:fragment="content" >
+		<div class="container col-md-8 col-md-offset-2">
+				<div class="card ">
+					<div class="card-header text-center bg-info">Modification d'un client</div>
+						<div class="card-body">
+							<h6 class="card-title">Veuillez renseigner tous les champs</h6>
+							<form th:action="@{/admin/save}" method="post">
+								<div class= "form-group">
+									<label class="control-label"> ID</label>
+									<input class="form-control" type="text"  name="id"  th:value="${client.id}"/>
+									<span class="text-danger" th:errors="${client.id}"></span>
+								</div>
+								<div class= "form-group">
+									<label class="control-label"> Nom</label>
+									<input class="form-control" type="text"  name="nom" th:value="${client.nom}"/>
+									<span class="text-danger" th:errors="${client.nom}"></span>
+								</div>
+								<div class= "form-group">
+									<label class="control-label"> Prenom</label>
+									<input class="form-control" type="text"  name="prenom" th:value="${client.prenom}"/>
+									<span class="text-danger" th:errors="${client.prenom}"></span>
+								</div>
+								<div class= "form-group">
+									<label class="control-label"> Adresse</label>
+									<input class="form-control" type="text"  name="adresse" th:value="${client.adresse}"/>
+								</div>
+								<div>
+									<button type="submit" class="btn btn-info">Sauver</button>
+								</div>
+							</form>
+						</div>	
+				</div>
+			</div>
+		</div>	
+
+</body>
+</html>
